@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  postgres:
+    container_name: rr_shop
+    image: postgres:15
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rr_shop
+    volumes:
+      - postgres_data_comp:/var/lib/postgresql/data
+
+volumes:
+  postgres_data_comp:
