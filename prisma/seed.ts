@@ -9,7 +9,7 @@ const prisma = new PrismaClient({
 });
 const userData: Prisma.UserCreateInput[] = [
   {
-    name: "Alice",
+    firstName: "Alice",
     email: "alice@prisma.io",
     posts: {
       create: [
@@ -24,9 +24,11 @@ const userData: Prisma.UserCreateInput[] = [
         },
       ],
     },
+    password: "$2b$12$8xYJWi0lAJG/Zg3B.vhPLuO9oYvtU6z1DTJ7qZvUGZiZ71yrtSe1e",
+    activationCode: ""
   },
   {
-    name: "Bob",
+    firstName: "Bob",
     email: "bob@prisma.io",
     posts: {
       create: [
@@ -37,6 +39,8 @@ const userData: Prisma.UserCreateInput[] = [
         },
       ],
     },
+    password: "$2b$12$8xYJWi0lAJG/Zg3B.vhPLuO9oYvtU6z1DTJ7qZvUGZiZ71yrtSe1e",
+    activationCode: ""
   },
 ];
 export async function main() {
