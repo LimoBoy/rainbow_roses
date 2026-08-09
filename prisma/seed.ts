@@ -25,7 +25,7 @@ const userData: Prisma.UserCreateInput[] = [
       ],
     },
     password: "$2b$12$8xYJWi0lAJG/Zg3B.vhPLuO9oYvtU6z1DTJ7qZvUGZiZ71yrtSe1e",
-    activationCode: ""
+    activationCode: null
   },
   {
     firstName: "Bob",
@@ -40,7 +40,7 @@ const userData: Prisma.UserCreateInput[] = [
       ],
     },
     password: "$2b$12$8xYJWi0lAJG/Zg3B.vhPLuO9oYvtU6z1DTJ7qZvUGZiZ71yrtSe1e",
-    activationCode: ""
+    activationCode: null
   },
 ];
 export async function main() {

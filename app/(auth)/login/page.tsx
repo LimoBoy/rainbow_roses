@@ -83,7 +83,7 @@ export default function LoginPage() {
 
                     <Button
                         type="submit"
-                        className="w-full h-12 bg-[#0f1330] hover:bg-[#0f1330]/90 text-white text-sm tracking-wide rounded-md"
+                        className="w-full h-12 bg-[#0f1330] hover:bg-[#0f1330]/90 text-white text-sm tracking-wide rounded-md cursor-pointer"
                     >
                         LOGIN
                     </Button>
@@ -98,7 +98,7 @@ export default function LoginPage() {
                 <Button
                     type="button"
                     variant="outline"
-                    className="w-full h-12 rounded-md border-neutral-300 text-neutral-900 font-normal flex items-center justify-center gap-2"
+                    className="w-full h-12 rounded-md border-neutral-300 text-neutral-900 font-normal flex items-center justify-center gap-2 cursor-pointer"
                 >
                     <GoogleIcon className="w-4 h-4" />
                     Sign in with Google

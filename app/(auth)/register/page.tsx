@@ -28,6 +28,7 @@ export default function SignUpPage() {
         password: "",
         subscribe: false,
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange =
         (field: TextField) => (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -35,7 +36,9 @@ export default function SignUpPage() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsSubmitting(true);
 
+        try {
         const res = await fetch("/api/auth/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -48,28 +51,33 @@ export default function SignUpPage() {
             }),
         });
 
-        const data = await res.json();
+        const data = await res.json().catch(() => ({}));
 
         if (!res.ok) {
             // show data.error to the user (e.g. toast / inline error state)
             addAlert({
                 color: "destructive",
-                title: data.error,
+                title: data.error ?? "We couldn't create your account.",
                 description: "Please try again.",
             })
             return;
         }
 
         // success — e.g. redirect to a "check your email" page
-        console.log(data.message, data.user);
-
         addAlert({
             color: "success",
-            title: "Register Success",
-            description: "Please verify your email.",
+            title: "Check your email",
+            description: "We sent an activation link to your email address.",
         });
-
-
+        } catch {
+            addAlert({
+                color: "destructive",
+                title: "Couldn't create your account",
+                description: "Check your connection and try again.",
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -172,9 +180,10 @@ export default function SignUpPage() {
 
                     <Button
                         type="submit"
-                        className="w-full h-12 bg-[#0f1330] hover:bg-[#0f1330]/90 text-white text-sm tracking-wide rounded-md"
+                        disabled={isSubmitting}
+                        className="w-full h-12 bg-[#0f1330] hover:bg-[#0f1330]/90 text-white text-sm tracking-wide rounded-md cursor-pointer"
                     >
-                        CREATE ACCOUNT
+                        {isSubmitting ? "CREATING ACCOUNT..." : "CREATE ACCOUNT"}
                     </Button>
                 </form>
 
@@ -187,7 +196,7 @@ export default function SignUpPage() {
                 <Button
                     type="button"
                     variant="outline"
-                    className="w-full h-12 rounded-md border-neutral-300 text-neutral-900 font-normal flex items-center justify-center gap-2"
+                    className="w-full h-12 rounded-md border-neutral-300 text-neutral-900 font-normal flex items-center justify-center gap-2 cursor-pointer"
                 >
                     <GoogleIcon className="w-4 h-4"/>
                     Sign up with Google

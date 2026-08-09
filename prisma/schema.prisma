@@ -27,7 +27,8 @@ model User {
   role  Role    @default(USER)
   signedForUpdates Boolean @default(false)
   isActivated Boolean  @default(false)
-  activationCode String
+  activationCode String?  @unique
+  activationExpiresAt DateTime?
 }
 
 model Post { 
