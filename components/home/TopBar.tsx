@@ -12,7 +12,7 @@ export function TopBar() {
             className="flex items-center gap-2 text-sm hover:opacity-80"
           >
             <Phone className="h-4 w-4" />
-            +1 724-204-1868
+            +373 60 340 323
           </a>
         </div>
 

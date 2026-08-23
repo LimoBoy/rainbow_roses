@@ -12,7 +12,7 @@ const categories: Category[] = [
   {
     label: "A TRUE ORIGINAL",
     image: "/images/benefits/1.jpeg",
-    text: 'Blue Nile is the original online jeweler. Since 1999, we’ve provided the best product quality and price available along with access to top quality diamonds, metals, and fine jewelry.'
+    text: 'Blue Nile is the original online jeweler. Since 1999, we’ve provided the best product quality and price available along with access to top quality moissanites, metals, and fine jewelry.'
   },
   {
     label: "DISTINCTIVE SERVICE",
@@ -22,12 +22,12 @@ const categories: Category[] = [
   {
     label: "INDUSTRY LEADERS",
     image: "/images/benefits/3.jpeg",
-    text: 'We set a higher standard in fine jewelry with ethically sourced diamonds, responsible mining, and craftsmanship backed for life. Seamless shopping tools and peace of mind come with every order.'
+    text: 'We set a higher standard in fine jewelry with ethically sourced moissanites, responsible mining, and craftsmanship backed for life. Seamless shopping tools and peace of mind come with every order.'
   },
   {
     label: "INNOVATIVE ASSORTMENT",
     image: "/images/benefits/4.jpeg",
-    text: 'Choose from the world’s most beautiful diamonds, hand selected by our experts and crafted into exceptional pieces by highly skilled artisans.'
+    text: 'Choose from the world’s most beautiful moissanites, hand selected by our experts and crafted into exceptional pieces by highly skilled artisans.'
   }
 ];
 

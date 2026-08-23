@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import { ChevronRight } from "lucide-react";
+import { getSession, signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 // shadcn/ui components (from "@/components/ui/...")
 import { Input } from "@/components/ui/input";
@@ -9,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {useModalStore} from "@/app/stores/modal-store";
 import ForgotPasswordPage from "@/components/modals/forgot-password/forgot-password";
+import { useAlertStore } from "@/app/stores/alert-store";
 
 interface LoginFormState {
     email: string;
@@ -18,19 +20,53 @@ interface LoginFormState {
 type TextField = "email" | "password";
 
 export default function LoginPage() {
+    const router = useRouter();
     const openModal = useModalStore((s) => s.openModal);
+    const addAlert = useAlertStore((s) => s.addAlert);
     const [form, setForm] = useState<LoginFormState>({
         email: "",
         password: "",
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange =
         (field: TextField) => (e: React.ChangeEvent<HTMLInputElement>) =>
             setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("Login", form);
+        setIsSubmitting(true);
+
+        try {
+            const result = await signIn("credentials", {
+                email: form.email,
+                password: form.password,
+                redirect: false,
+            });
+
+            if (result?.error) {
+                addAlert({
+                    color: "destructive",
+                    title: "Unable to sign in",
+                    description: "Check your email, password, and account activation status.",
+                });
+                return;
+            }
+
+            const session = await getSession();
+            const destination = session?.user?.role === "ADMIN" ? "/admin" : "/dashboard";
+
+            router.replace(destination);
+            router.refresh();
+        } catch {
+            addAlert({
+                color: "destructive",
+                title: "Unable to sign in",
+                description: "Check your connection and try again.",
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -49,6 +85,7 @@ export default function LoginPage() {
                         </Label>
                         <Input
                             id="email"
+                            name="email"
                             type="email"
                             value={form.email}
                             onChange={handleChange("email")}
@@ -74,6 +111,7 @@ export default function LoginPage() {
                         </div>
                         <Input
                             id="password"
+                            name="password"
                             type="password"
                             value={form.password}
                             onChange={handleChange("password")}
@@ -83,9 +121,10 @@ export default function LoginPage() {
 
                     <Button
                         type="submit"
+                        disabled={isSubmitting}
                         className="w-full h-12 bg-[#0f1330] hover:bg-[#0f1330]/90 text-white text-sm tracking-wide rounded-md cursor-pointer"
                     >
-                        LOGIN
+                        {isSubmitting ? "LOGGING IN..." : "LOGIN"}
                     </Button>
                 </form>
 

@@ -2,6 +2,7 @@
 import { Search, User, Heart, ShoppingBag, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import {useModalStore} from "@/app/stores/modal-store";
+import Image from "next/image";
 
 export default function TheMenu() {
   const openModal = useModalStore((s) => s.openModal);
@@ -27,16 +28,20 @@ export default function TheMenu() {
       path: "/jewelry/necklaces",
     },
     {
-      label: "Diamonds",
-      path: "/jewelry/diamonds",
-    },
-    {
-      label: "Gemstones",
-      path: "/jewelry/gemstones",
+      label: "Moissanites",
+      path: "/jewelry/moissanites",
     },
     {
       label: "Gifts & Collections",
       path: "/gifts-collections",
+    },
+    {
+      label: "Today's deals",
+      path: "/today-deals",
+    },
+    {
+      label: "Blog",
+      path: "/blog",
     },
   ];
 
@@ -46,7 +51,8 @@ export default function TheMenu() {
         {/* Logo */}
         <Link href="/" className="shrink-0">
           <span className="font-serif text-3xl tracking-tight text-[#0a1f3c]">
-            Blue Nile
+            {/*<Image src="/logo/rainbow_roses_logo-png.png" alt={""} width="190" height="150"/>*/}
+            <h1 className="font-dancing text-5xl">Rainbow Roses</h1>
           </span>
         </Link>
 

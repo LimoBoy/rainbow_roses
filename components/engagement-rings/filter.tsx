@@ -86,8 +86,7 @@ export default function ProductFilters() {
 
       <p className="mt-3 max-w-4xl text-[17px] leading-6 text-[#0c1636]">
         Shop stylish engagement rings and custom designs. Choose from a large
-        variety of engagement ring settings, styles, diamonds, and gemstones
-        to find the right fit.
+        variety of engagement ring settings, styles, moissanites to find the right fit.
       </p>
 
       <div className="mt-7 flex flex-wrap gap-3">

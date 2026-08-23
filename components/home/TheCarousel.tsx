@@ -20,8 +20,8 @@ const categories: Category[] = [
     image: "/images/carousel/collection of diamond wedding rings and bands.jpeg",
   },
   {
-    label: "Diamonds",
-    href: "/diamonds",
+    label: "Moissanites",
+    href: "/moissanites",
     image: "/images/carousel/loose diamonds.jpeg",
   },
   {
